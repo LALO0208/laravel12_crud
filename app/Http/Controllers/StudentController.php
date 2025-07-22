@@ -7,6 +7,13 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
+    public function index()
+    {
+        //$students = Student::orderBy('created_at', 'desc')->paginate(5);
+        $students = Student::orderByDesc('created_at')->paginate(5);
+
+        return view('students.index', compact('students'));
+    }
     public function create()
     {
         return view('students.create');
@@ -24,6 +31,6 @@ class StudentController extends Controller
         //dd('ok');
 
         Student::create($request->all());
-        return back()->with('success', 'Student added succesfully');
+        return redirect()->route('students.index')->with('success', 'Student added succesfully');
     }
 }
