@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 
 class StudentController extends Controller
 {
@@ -22,5 +23,7 @@ class StudentController extends Controller
 
         //dd('ok');
 
+        Student::create($request->all());
+        return back()->with('success', 'Student added succesfully');
     }
 }
