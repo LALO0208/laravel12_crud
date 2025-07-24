@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Students List')
 @section('content')
     <div class="container mt-4">
         <h2 class="mb-4 text-white">Student List</h2>
@@ -40,5 +41,8 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="d-flex justify-content-end mt-4">
+            {{ $students->links('vendor.pagination.bootstrap-5-dark') }}
+        </div>
     </div>
 @endsection

@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'Add Student')
+
 @section('content')
 
 
@@ -6,6 +8,8 @@
     <div class="row">
         <div class="col-md-6 offset-3">
 
+            <h2 class="text-white m-0">Add Student</h2>
+            <a href="{{ route('students.index') }}" class="btn btn-outline-warning mt-2">Back</a>
             <div class="card bg-dark text-white mt-4">
                 <div class="card-body border border-light rounded">
                     <form action="{{ route('students.store') }}" method="POST">
