@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
@@ -32,5 +33,40 @@ class StudentController extends Controller
 
         Student::create($request->all());
         return redirect()->route('students.index')->with('success', 'Student added succesfully');
+    }
+
+    public function show(Student $student)
+    {
+        //$student = Student::findOrFail($id);
+        //dd($student);
+
+        return view('students.show', compact('student'));
+    }
+    public function edit(Student $student)
+    {
+        return view('students.edit', compact('student'));
+    }
+    public function update(Request $request, Student $student)
+    {
+        //validate data
+
+        $request->validate([
+            'name' => 'required|string|min:2|max:255',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('students', 'email')->ignore($student->id)
+            ],
+            'phone' => [
+                'required',
+                'digits:10',
+                Rule::unique('students', 'phone')->ignore($student->id)
+            ],
+        ]);
+
+        //dd('ok');
+
+        $student->update($request->all());
+         return redirect()->route('students.index')->with('success', 'Student updated succesfully');
     }
 }

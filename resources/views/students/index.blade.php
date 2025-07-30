@@ -28,8 +28,8 @@
                         <td>{{ $Student->email }}</td>
                         <td>{{ $Student->phone }}</td>
                         <td>
-                            <a href="" class="btn btn-outline-warning">View</a>
-                            <a href="" class="btn btn-outline-info">Edit</a>
+                            <a href="{{ route('students.show', $Student->id) }}" class="btn btn-outline-warning">View</a>
+                            <a href="{{ route('students.edit', $Student->id) }}" class="btn btn-outline-info">Edit</a>
                             <a href="" class="btn btn-outline-danger">Delete</a>
                         </td>
                     </tr>
